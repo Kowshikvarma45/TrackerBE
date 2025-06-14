@@ -47,7 +47,6 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Aggregate time entries
     const pipeline = [
       {
         $match: {
@@ -75,7 +74,6 @@ export async function GET(request: NextRequest) {
 
     const aggregatedData = await timeEntriesCollection.aggregate(pipeline).toArray();
 
-    // Calculate totals
     let totalTime = 0;
     let productiveTime = 0;
     let unproductiveTime = 0;
@@ -104,7 +102,6 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    // Get daily breakdown for charts
     const dailyPipeline = [
       {
         $match: {
